@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="215dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="15dp"
+        android:src="@drawable/medicare" />
+
+
+    <ImageView
+        android:id="@+id/ivPresc"
+        android:layout_width="58dp"
+        android:layout_height="41dp"
+        android:layout_alignBottom="@+id/prescriptions"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="58dp"
+        android:src="@drawable/pres" />
+
+    <Button
+        android:id="@+id/prescriptions"
+        android:layout_width="228dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="300dp"
+        android:layout_toEndOf="@+id/ivReport"
+        android:background="#1e88e5"
+        android:text="Prescriptions"
+        android:textColor="#ffffff" />
+
+    <ImageView
+        android:id="@+id/ivReport"
+        android:layout_width="58dp"
+        android:layout_height="41dp"
+        android:layout_alignBottom="@+id/reports"
+        android:layout_alignStart="@+id/ivPresc"
+        android:src="@drawable/report" />
+
+
+    <Button
+        android:id="@+id/reports"
+        android:layout_width="228dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="235dp"
+        android:layout_toEndOf="@+id/ivPresc"
+        android:background="#1e88e5"
+        android:text="Reports"
+        android:textColor="#ffffff" />
+
+    <ImageView
+        android:id="@+id/ivReminder"
+        android:layout_width="58dp"
+        android:layout_height="41dp"
+        android:layout_alignBottom="@+id/reminder"
+        android:layout_alignStart="@+id/ivPresc"
+        android:src="@drawable/bell" />
+
+    <Button
+        android:id="@+id/reminder"
+        android:layout_width="228dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="165dp"
+        android:layout_toEndOf="@+id/ivPresc"
+        android:background="#1e88e5"
+        android:text="Reminders"
+        android:textColor="#ffffff" />
+
+    <ImageView
+        android:id="@+id/ivContact"
+        android:layout_width="match_parent"
+        android:layout_height="94dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:src="@drawable/contact" />
+
+
+
+</RelativeLayout>
