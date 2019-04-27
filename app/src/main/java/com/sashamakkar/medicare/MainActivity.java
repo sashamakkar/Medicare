@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
-import java.io.File;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -61,9 +60,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if(id == R.id.menu_new_content_addChangeUser){
-
-        }
         return super.onOptionsItemSelected(item);
     }
 }

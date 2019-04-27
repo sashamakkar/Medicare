@@ -1,12 +1,10 @@
 package com.sashamakkar.medicare;
 
-import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -18,7 +16,6 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -33,11 +30,6 @@ public class PrescriptionActivity extends AppCompatActivity {
 
     public static final int CAMERA_CODE = 123;
     PrescriptionAdapter prescriptionAdapter;
-
-    String path = Environment.getExternalStorageDirectory() + "/photo1.jpg";
-    File file = new File(path);
-    final Uri outputFileUri = Uri.fromFile(file);
-
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -62,19 +54,43 @@ public class PrescriptionActivity extends AppCompatActivity {
                 startActivityForResult(Intent.createChooser(presIntent, "Complete Action Using:"), CAMERA_CODE);
             }
         });
-
     }
 
+    Bitmap mBitmap = null;
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == CAMERA_CODE && resultCode == RESULT_OK) {
+        if(requestCode == CAMERA_CODE && resultCode == RESULT_OK){
             Uri data_uri = data.getData();
             Log.e("TAG", "onActivityResult: " + data_uri);
 
             prescriptionAdapter.addNewImage(data_uri);
 
+            try {
+                mBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), data_uri);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            mBitmap .compress(Bitmap.CompressFormat.PNG, 100, stream);
+            byte[] byteArray = stream.toByteArray();
+
+
+            String fileName = "Report";
+            FileOutputStream outputStream = null;
+            try
+            {
+                outputStream = openFileOutput(fileName, Context.MODE_PRIVATE);
+                outputStream.write(byteArray);
+                outputStream.close();
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
         }
     }
+
 }
+

@@ -57,6 +57,29 @@ public class ReportActivity extends AppCompatActivity {
         if(requestCode == CAMERA_CODE && resultCode == RESULT_OK){
             Uri data_uri = data.getData();
             reportAdapter.addNewImage(data_uri);
+
+            try {
+                mBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), data_uri);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            mBitmap .compress(Bitmap.CompressFormat.PNG, 100, stream);
+            byte[] byteArray = stream.toByteArray();
+
+
+            String fileName = "Report";
+            FileOutputStream outputStream = null;
+            try
+            {
+                outputStream = openFileOutput(fileName, Context.MODE_PRIVATE);
+                outputStream.write(byteArray);
+                outputStream.close();
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
         }
 
     }
